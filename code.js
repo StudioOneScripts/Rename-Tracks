@@ -1,5 +1,4 @@
-﻿// include_file("resource://{main}/sdk/cclapp.js");
-const kPackageID="rename.tracks";
+﻿const kPackageID="rename.tracks";
 
 function userFunction()
 {
@@ -11,12 +10,8 @@ function userFunction()
 		this.paramList = Host.Classes.createInstance("CCL:ParamList")
 		this.paramList.controller = this;
 
-		// define test button for example script
-	//	this.testButton = this.paramList.addParam("testButton")
 		this.sourceBox = this.paramList.addString("sourceBox");
         this.replaceBox = this.paramList.addString("replaceBox");
-
-
 
 		// open the GUI dialog
 		Host.GUI.runDialog(Host.GUI.Themes.getTheme(kPackageID),"UserForm", this)
@@ -55,15 +50,6 @@ function userFunction()
         }
 		return Host.Results.kResultOk;
 	}
-
-	// -----------------------------------------------------------------
-
-	this.paramChanged = function (param)
-	{
-		// test button trigger
-		if (param.name == "testButton")
-			Host.GUI.alert("=== TESTING ===")
-	}
 }
 
 // ---------------------------------------------------------------------
@@ -72,22 +58,4 @@ function userFunction()
 function createInstance()
 {
 	return new userFunction();
-}
-
-// ---------------------------------------------------------------------
-
-// messaging shortcuts
-function print  (msg) { Host.Console.writeLine(msg.toString()) }
-function alert  (msg) { Host.GUI.alert(msg.toString()) }
-
-// parse object properties
-function getAllPropertyNames(obj)
-{
-	var props = [];
-	do
-	{
-		props = props.concat(Object.getOwnPropertyNames(obj));
-	} while (obj = Object.getPrototypeOf(obj));
-	for (i in props)
-		print(props[i])
 }
