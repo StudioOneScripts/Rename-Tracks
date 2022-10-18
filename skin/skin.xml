@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Skin>
+	<Forms>
+		<Form name="UserForm" title="Rename Tracks" buttons="okay" firstfocus="sourceBox" windowstyle="dialogstyle restorepos">
+			<View size="10,5,0,0" >
+                <Horizontal spacing="0" margin="0">
+                    <Space width='5'/>
+                    <Vertical spacing='5' margin='0'>
+                    <Space height='2'/>
+                        <Label title="Find:"/>
+                        <EditBox name="sourceBox"  width='170' height='22'  style="MyEditBox"/>
+                        <Label title="Replace:"/>
+                        <EditBox name="replaceBox"  width='170' height='22'  style="MyEditBox"/>
+                        <Space height='5'/>
+                    </Vertical>
+                    <Space width='15'/>
+                </Horizontal>
+            </View>
+		</Form> 
+	</Forms>
+
+</Skin>
