@@ -24,7 +24,8 @@ function userFunction()
 	this.performEdit = function (context)
 	{
 		var trackList = context.mainTrackList;
-       
+
+        // if ## only strip numbers from track names
         if (this.sourceBox.string.trim() == "##")
         {   
             for (var i = 0; i < trackList.numTracks; i++) 
