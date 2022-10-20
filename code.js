@@ -46,7 +46,6 @@ function userFunction()
             context.functions.renameEvent(track, newname.toString());
         }
 
-        
 		return Host.Results.kResultOk;
 	}
 
