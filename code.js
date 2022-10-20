@@ -50,12 +50,11 @@ function userFunction()
 		return Host.Results.kResultOk;
 	}
 
-    // IParamObserver
+    // -----------------------------------------
 	this.paramChanged = function (param)
 	{
 
-    }
-			
+    }	
 }
 
 // ---------------------------------------------------------------------
