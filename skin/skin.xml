@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Skin>
 	<Forms>
-		<Form name="UserForm" title="Rename Tracks" buttons="okay" firstfocus="sourceBox" windowstyle="dialogstyle restorepos">
+		<Form name="UserForm" title="Rename Tracks" firstfocus="sourceBox" windowstyle="dialogstyle restorepos">
 			<View size="10,5,0,0" >
                 <Horizontal spacing="0" margin="0">
                     <Space width='5'/>
@@ -12,6 +12,9 @@
                         <Label title="Replace:"/>
                         <EditBox name="replaceBox"  width='170' height='22'  style="MyEditBox"/>
                         <Space height='5'/>
+
+                        <Button name="doReplace"  title="Rename" width='170' height='22' tooltip="Perform rename operation" />
+                        <Space height='10'/>
                     </Vertical>
                     <Space width='15'/>
                 </Horizontal>

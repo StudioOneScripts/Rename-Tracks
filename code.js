@@ -6,20 +6,31 @@ function userFunction()
 
 	this.prepareEdit = function (context)
 	{
-		var parameters = context.parameters;
+		this.paramList = Host.Classes.createInstance("CCL:ParamList")
+		this.paramList.controller = this;
 
-		this.sourceBox = parameters.addString("sourceBox");
-        this.replaceBox = parameters.addString("replaceBox");
+		this.sourceBox = this.paramList.addString("sourceBox");
+        this.replaceBox = this.paramList.addString("replaceBox");
 
 		// open the GUI dialog
-        return context.runDialog ("UserForm", kPackageID);
+		Host.GUI.runDialog(Host.GUI.Themes.getTheme(kPackageID),"UserForm", this)
 	}
 
 	// -----------------------------------------------------------------
 
 	this.performEdit = function (context)
 	{
-		var trackList = context.mainTrackList;
+		return Host.Results.kResultOk;
+	}
+
+    // -----------------------------------------
+	this.paramChanged = function (param)
+	{
+        let trackList = Host.Objects.getObjectByUrl(
+            "://hostapp/DocumentManager/ActiveDocument/TrackList").mainTrackList;
+
+        let functions = trackList.getTrack(0).getRoot().createFunctions();
+        if (!functions) {return}
 
         // if ## only strip numbers from track names
         if (this.sourceBox.string.trim() == "##")
@@ -29,7 +40,7 @@ function userFunction()
                 var track = trackList.getTrack(i);
                 var newname = track.name.toString().replace(/[0-9]/g, '')
                 var finalname = newname.replace("-", "").trim();
-                context.functions.renameEvent(track, finalname);
+                functions.renameEvent(track, finalname);
             }
             return;
         }
@@ -43,15 +54,8 @@ function userFunction()
             var name = track.name.toString();
 
             var newname = name.replace(this.sourceBox.string, this.replaceBox.string);
-            context.functions.renameEvent(track, newname.toString());
+            functions.renameEvent(track, newname.toString());
         }
-
-		return Host.Results.kResultOk;
-	}
-
-    // -----------------------------------------
-	this.paramChanged = function (param)
-	{
 
     }	
 }
