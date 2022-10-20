@@ -6,17 +6,13 @@ function userFunction()
 
 	this.prepareEdit = function (context)
 	{
-		// create a parameter list for gui objects
-		this.paramList = Host.Classes.createInstance("CCL:ParamList")
-		this.paramList.controller = this;
+		var parameters = context.parameters;
 
-		this.sourceBox = this.paramList.addString("sourceBox");
-        this.replaceBox = this.paramList.addString("replaceBox");
+		this.sourceBox = parameters.addString("sourceBox");
+        this.replaceBox = parameters.addString("replaceBox");
 
 		// open the GUI dialog
-		Host.GUI.runDialog(Host.GUI.Themes.getTheme(kPackageID),"UserForm", this)
-
-		return Host.Results.kResultOk;
+        return context.runDialog ("UserForm", kPackageID);
 	}
 
 	// -----------------------------------------------------------------
@@ -49,8 +45,17 @@ function userFunction()
             var newname = name.replace(this.sourceBox.string, this.replaceBox.string);
             context.functions.renameEvent(track, newname.toString());
         }
+
+        
 		return Host.Results.kResultOk;
 	}
+
+    // IParamObserver
+	this.paramChanged = function (param)
+	{
+
+    }
+			
 }
 
 // ---------------------------------------------------------------------
